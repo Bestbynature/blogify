@@ -5,7 +5,7 @@ class Like < ActiveRecord::Base
   def self.list_all
     Like.all.map(&:body)
   end
-  
+
   def self.delete_all
     Like.all.map(&:destroy)
   end
@@ -17,6 +17,4 @@ class Like < ActiveRecord::Base
   def update_likes_counter
     author.increment!(:likes_counter)
   end
-
 end
-  

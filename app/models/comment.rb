@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   def self.list_all
     Comment.all.map(&:text)
   end
-  
+
   def self.delete_all
     Comment.all.map(&:destroy)
   end
@@ -13,8 +13,8 @@ class Comment < ActiveRecord::Base
   after_save :update_comments_counter
 
   private
-  def update_comments_counter
-   post.increment!(:comments_counter)
-  end
 
+  def update_comments_counter
+    post.increment!(:comments_counter)
+  end
 end
