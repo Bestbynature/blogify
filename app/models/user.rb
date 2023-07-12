@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
+  # Validations
+  validates :name, presence: true
+  validates :bio, presence: true
+  validates :photo, presence: true
+  validates :posts_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+
   def recent_posts(count = 3)
     posts.order(created_at: :desc).limit(count)
   end
@@ -19,11 +25,11 @@ class User < ActiveRecord::Base
 
   # list all users with no posts
   def self.list_inactive
-    User.all.select { |user| user.posts.count.zero? }.map(&:name)
+    User.all.select { |user| user.posts_counter.zero? }.map(&:name)
   end
 
   # list all users with more than 1 post
   def self.list_active
-    User.all.select { |user| user.posts.count > 1 }.map(&:name)
+    User.all.select { |user| user.posts_counter.positive? }.map(&:name)
   end
 end

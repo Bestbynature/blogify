@@ -3,20 +3,17 @@ class Post < ActiveRecord::Base
   has_many :comments, foreign_key: 'post_id'
   has_many :likes, foreign_key: 'post_id'
 
-  def update_likes_counter
+  # Validations
+  validates :title, presence: true, length: { maximum: 250 }
+  validates :comments_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  validates :likes_counter, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+
+  def update_likes_counter(_count = 0)
     update(likes_counter: likes.count)
   end
 
-  def self.list_all
-    Post.all.map(&:title)
-  end
-
   def self.delete_all
-    Post.all.map(&:destroy)
-  end
-
-  def self.list_most_recent
-    Post.all.order(created_at: :desc).limit(5).map(&:title)
+    destroy_all
   end
 
   def recent_comments(count = 5)
