@@ -57,9 +57,9 @@ RSpec.describe Post, type: :model do
     end
 
     it 'increments the posts_counter of the author' do
-      expect {
+      expect do
         post.send(:update_posts_counter)
-      }.to change { user.reload.posts_counter }.by(1)
+      end.to change { user.reload.posts_counter }.by(1)
     end
   end
 
