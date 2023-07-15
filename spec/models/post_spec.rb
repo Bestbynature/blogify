@@ -55,6 +55,12 @@ RSpec.describe Post, type: :model do
     it 'should have a recent_comments method' do
       expect(post).to respond_to(:recent_comments)
     end
+
+    it 'increments the posts_counter of the author' do
+      expect {
+        post.send(:update_posts_counter)
+      }.to change { user.reload.posts_counter }.by(1)
+    end
   end
 
   describe 'class methods' do
