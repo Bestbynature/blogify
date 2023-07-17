@@ -12,15 +12,15 @@ RSpec.describe Like, type: :model do
   end
 
   describe 'class methods' do
-    let!(:post) { Post.create(title: 'Example Title', comments_counter: 0, likes_counter: 0) }
     let!(:user) { User.create(name: 'John Doe', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico', posts_counter: 0) }
+    let!(:post) { Post.create(title: 'Example Title', comments_counter: 0, likes_counter: 0, author: user) }
     let!(:like1) { Like.create(post:, user:) }
     let!(:like2) { Like.create(post:, user:) }
     let!(:like3) { Like.create(post:, user:) }
 
     it 'should have a list_all method' do
-      expect(Like.list_all).to eq([{ post_id: post.id, author_id: user.id }, { post_id: post.id, author_id: user.id },
-                                   { post_id: post.id, author_id: user.id }])
+      expect(Like.list_all).to eq([{ post_id: post.id, user_id: user.id }, { post_id: post.id, user_id: user.id },
+                                   { post_id: post.id, user_id: user.id }])
     end
   end
 

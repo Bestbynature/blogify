@@ -87,18 +87,17 @@ RSpec.describe User, type: :model do
 
   describe 'the behavior of instance methods' do
     let(:user) { User.create(name: 'Jane Smith', photo: 'https://unsplash.com/photos/ABC123', bio: 'Writer from Canada', posts_counter: 0) }
-    let!(:post1) { user.posts.create(title: 'Post 1', created_at: 3.days.ago) }
-    let!(:post2) { user.posts.create(title: 'Post 2', created_at: 2.days.ago) }
-    let!(:post3) { user.posts.create(title: 'Post 3', created_at: 1.day.ago) }
+    let!(:post1) { Post.create(title: 'Post 1', comments_counter: 0, likes_counter: 0, author: user) }
+    let!(:post2) { Post.create(title: 'Post 2', comments_counter: 0, likes_counter: 0, author: user) }
+    let!(:post3) { Post.create(title: 'Post 3', comments_counter: 0, likes_counter: 0, author: user) }
 
     it 'should have a recent_posts method' do
       expect(user).to respond_to(:recent_posts)
     end
 
-    # it 'should return recent posts in descending order' do
-    #   recent_posts = user.recent_posts(2)
-
-    #   expect(recent_posts).to eq([post3, post2])
-    # end
+    it 'should return recent posts in descending order' do
+      recent_posts = user.recent_posts(2)
+      expect(recent_posts).to eq([post3, post2])
+    end
   end
 end
