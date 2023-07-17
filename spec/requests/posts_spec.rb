@@ -11,6 +11,11 @@ RSpec.describe 'Posts', type: :request do
       get '/users/:user_id/posts'
       expect(response.body).to include('Here is a list of posts for a given user')
     end
+
+    it 'renders the appropriate template' do
+      get '/users/:user_id/posts'
+      expect(response).to render_template(:index)
+    end
   end
 
   describe 'GET /show' do
@@ -26,6 +31,11 @@ RSpec.describe 'Posts', type: :request do
                          'the posts for a given user'
 
       expect(response.body).to include(expected_content)
+    end
+
+    it 'renders the appropriate template' do
+      get '/users/:user_id/posts/show'
+      expect(response).to render_template(:show)
     end
   end
 end
