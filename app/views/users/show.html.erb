@@ -1,1 +1,35 @@
-<h2>This is a particular user with the given id</h2>
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<p>
+    <strong>Bio:</strong>
+    <%= @user.bio %>
+  </p>
+  <p><strong>
+      Number of Posts: <%= @user.posts.count %>
+    </strong></p>
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
+
+<h2>Posts</h2>
+<%= link_to "View all posts", user_posts_path(@user) %>
+
+<% @user.posts.each_with_index do |post, index| %>
+  <div>
+  Post #<%= index + 1 %>
+    <p><%= post.text %></p>
+    <p><%= link_to "Show this post", user_post_path(@user, post) %></p>
+    <p><strong>
+    Comments: <%= post.comments.count %>
+  </strong></p>
+  <p><strong>Likes: </strong> <%= post.likes_counter %></p>
+  <hr>
+    </div>
+<% end %>
+

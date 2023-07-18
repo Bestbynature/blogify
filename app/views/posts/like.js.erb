@@ -1,0 +1,4 @@
+var likesCountElement = document.getElementById('likes_count');
+if (likesCountElement) {
+  likesCountElement.textContent = '<%= @post.likes_counter %>';
+}

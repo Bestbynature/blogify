@@ -1,0 +1,13 @@
+<h1>Comments#edit</h1>
+<p>Find me in app/views/comments/edit.html.erb</p>
+
+<h1>Editing comment</h1>
+
+<%= render "form", comment: @comment %>
+
+<br>
+
+<div>
+  <%= link_to "Back to post", user_post_path(@post.author, @post) %> |
+  <%= link_to "Back to comments", user_post_path(@post.author, @post) %>
+</div>

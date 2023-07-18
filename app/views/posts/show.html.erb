@@ -1,1 +1,32 @@
-<h2>This is a particular post with the given ID out of all the posts for a given user</h2>
+<p style="color: green"><%= notice %></p>
+
+<h3>Post #<%= params[:id] %> by <%= @post.author.name %></h3>
+
+<p><strong>Comments: </strong> <%= @post.comments.count %></p>
+
+<p><strong>Likes: </strong> <%= @post.likes_counter %></p>
+
+<%= render @post %>
+
+
+<div>
+<h4>Comments</h4>
+  <% @post.comments.each do |comment| %>
+    <p><strong><%= @user.name %>:</strong><%= comment.text %>
+    <%= link_to "Edit", edit_user_post_comment_path(@post.author, @post, comment) %>
+    <%= link_to "Delete", user_post_comment_path(@post.author, @post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+  </p>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Edit this post", edit_user_post_path(@post.author, @post) %> |
+  <%= link_to "Back to posts", user_posts_path(@post.author) %>
+
+  <%= button_to "Destroy this post", user_post_path(@post.author, @post), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
+
+<%= link_to "New comment", new_user_post_comment_path(@post.author, @post) %>
+
+<%= button_to "Like", like_user_post_path(@post.author, @post), method: :post, remote: true %>
+

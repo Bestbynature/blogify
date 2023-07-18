@@ -1,2 +1,17 @@
+<p style="color: green"><%= notice %></p>
 
-<h2>Here is a list of all the users stored in the database</h2>
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      Number of Posts: <%= user.posts.count %>
+    </p>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user", new_user_path %>
