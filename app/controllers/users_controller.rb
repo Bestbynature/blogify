@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:id])
     @user = User.find_by(id: params[:id])
   end
 
@@ -13,8 +12,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # @user = User.create(params.require(:user).permit(:username,:email,:password))
-    # redirect_to users_path
     @user = User.new(user_params)
 
     respond_to do |format|
