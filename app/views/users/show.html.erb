@@ -18,8 +18,8 @@
 </div>
 
 <h2>Posts</h2>
-<%= link_to "View all posts", user_posts_path(@user) %>
-
+<%= link_to "Create a new post", new_post_path %>
+<br /><br />
 <% @user.posts.each_with_index do |post, index| %>
   <div>
   Post #<%= index + 1 %>
@@ -32,4 +32,3 @@
   <hr>
     </div>
 <% end %>
-
