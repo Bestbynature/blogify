@@ -1,33 +1,43 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @user %>
+<div class="user">
+<div class="user-photo">
+<%= image_tag @user.photo, alt: "User Photo", class: "photo", title: "#{@user.name}'s Photo" %>
+</div>
+<div class="user-info">
+<p><strong><%= @user.name %></strong></p>
 
-<p>
-    <strong>Bio:</strong>
-    <%= @user.bio %>
-  </p>
-  <p><strong>
-      Number of Posts: <%= @user.posts.count %>
-    </strong></p>
-
+<p><strong>Number of Posts: <%= @user.posts.count %>
+</strong></p>
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+<%= link_to "Edit this user", edit_user_path(@user) %> |
+<%= link_to "Back to users", users_path %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<%= button_to "Destroy this user", @user, method: :delete %>
 </div>
 
-<h2>Posts</h2>
-<%= link_to "View all posts", user_posts_path(@user), data: { view_all_posts: true } %>
+</div>
+</div>
+<div class="border">
+<p><strong>Bio</strong></p>
+<p><%= @user.bio %></p>
+</div>
 
+<div class="border">
+<p><strong>Posts</strong></p>
+<%= link_to "View all posts", user_posts_path(@user), data: { view_all_posts: true } %>
+</div>
 <% @user.posts.first(3).each_with_index do |post, index| %>
-  <div data-post-id="<%= post.id %>">
-    Post #<%= index + 1 %>
-    <p><%= post.text %></p>
+  <div data-post-id="<%= post.id %>" class="border">
+    <strong>Post #<%= index + 1 %></strong>
+    <p><%= truncate(post.text, length: 50) %></p>
     <p><%= link_to "Show this post", user_post_path(@user, post) %></p>
-    <p><strong>Comments: <%= post.comments.count %></strong></p>
-    <p><strong>Likes: <%= post.likes_counter %></strong></p>
-    <hr>
+    <p class="sub"><strong>Comments: <%= post.comments.count %></strong>,
+    <strong>Likes: <%= post.likes_counter %></strong></p>
   </div>
 <% end %>
+
+<div style="text-align: center;">
+  <%= link_to "View all posts", user_posts_path(@user), data: { view_all_posts: true } %>
+</div>
 

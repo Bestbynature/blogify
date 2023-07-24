@@ -1,15 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h3>Post #<%= params[:id] %> by <%= @post.author.name %></h3>
+<p><strong>Post #<%= params[:id] %> by <%= @post.author.name %></strong></p>
 
-<p><strong>Comments: </strong> <%= @post.comments.count %></p>
+<p class="sub"><strong>Comments: </strong><%= @post.comments.count %>,
 
-<p><strong>Likes: </strong> <%= @post.likes_counter %></p>
+<strong>Likes: </strong><%= @post.likes_counter %></p>
 
-<%= render @post %>
+<p class="border"><%= @post.text %></p>
 
-<div>
-  <h4>Comments</h4>
+<div class="border small">
+  <p>Comments</p>
   <% @post.comments.each do |comment| %>
     <div data-comment-id="<%= comment.id %>">
       <p>

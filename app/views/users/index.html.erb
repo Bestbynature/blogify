@@ -6,10 +6,11 @@
 <div id="users">
 <% @users.each do |user| %>
   <div class="user" id="user-<%= user.id %>">
-    <%= image_tag user.photo, alt: "User Photo", class: "user-photo", title: "User Photo" %>
-
+  <div class="user-photo">
+    <%= image_tag user.photo, alt: "User Photo", class: "photo", title: "#{user.name}'s Photo" %>
+  </div>
     <div class="user-info">
-      <h3><%= user.name %></h3>
+      <p><%= user.name %></p>
       <p>Number of Posts: <%= user.posts.count %></p>
       <p>
         <%= link_to "Show this user", user_path(user) %>
