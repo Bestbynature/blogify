@@ -140,7 +140,11 @@ You can deploy this project using:
 - Twitter: [@twitterhandle](https://twitter.com/Dammybest)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/damilareismailabestbynature/)
 
+👤 **Brian Yegon**
 
+- GitHub: [@yegonkimutai](https://github.com/yegonkimutai)
+- Twitter: [@yegonbrian8](https://twitter.com/coder_rida)
+- LinkedIn: [brian-yegon](https://www.linkedin.com/in/brian-yegon-0717a1241/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
