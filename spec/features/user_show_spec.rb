@@ -4,7 +4,6 @@ RSpec.describe 'User Show Page', type: :feature, js: true do
   before do
     Capybara.current_driver = :selenium_chrome_headless
 
-    # Create a user and some posts for testing
     @user = FactoryBot.create(:user)
     @posts = FactoryBot.create_list(:post, 3, author: @user)
   end
@@ -14,7 +13,7 @@ RSpec.describe 'User Show Page', type: :feature, js: true do
 
     expect(page).to have_css("img[src='https://source.unsplash.com/glRqyWJgUeY']")
     expect(page).to have_content('Test User')
-    expect(page).to have_content("Number of Posts: 3")
+    expect(page).to have_content('Number of Posts: 3')
     expect(page).to have_content('Test User bio')
   end
 
@@ -32,33 +31,27 @@ RSpec.describe 'User Show Page', type: :feature, js: true do
 
   it 'redirects to the post show page when clicking on a post' do
     visit user_path(@user)
-  
+
     @posts.each do |post|
       post_container = find("div[data-post-id='#{post.id}']")
       within(post_container) do
-        click_link "Show this post", exact_text: true
+        click_link 'Show this post', exact_text: true
       end
-  
-      # Adding a short wait time to ensure the click event takes effect
+
       sleep 1
-  
+
       expect(current_path).to eq(user_post_path(@user, post))
-      visit user_path(@user) # Go back to the user show page for the next iteration
+      visit user_path(@user)
     end
   end
-  
-  
+
   it 'redirects to the user posts index page when clicking "View all posts"' do
     visit user_path(@user)
-  
+
     find("a[data-view-all-posts='true']").click
-  
-    # Adding a short wait time to ensure the click event takes effect
+
     sleep 1
-  
+
     expect(current_path).to eq(user_posts_path(@user))
   end
-  
-  
-  
 end

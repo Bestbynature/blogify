@@ -1,11 +1,9 @@
-# spec/features/post_show_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'Post Show Page', type: :feature, js: true do
   before do
     Capybara.current_driver = :selenium_chrome_headless
 
-    # Create a user, post, and comments for testing
     @user = FactoryBot.create(:user)
     @post = FactoryBot.create(:post, author: @user)
     @comments = FactoryBot.create_list(:comment, 5, post: @post, user: @user)
@@ -15,8 +13,8 @@ RSpec.describe 'Post Show Page', type: :feature, js: true do
     visit user_post_path(@post.author, @post)
 
     expect(page).to have_content("Post ##{@post.id} by #{@user.name}")
-    expect(page).to have_content("Comments: 5")
-    expect(page).to have_content("Likes: 0")
+    expect(page).to have_content('Comments: 5')
+    expect(page).to have_content('Likes: 0')
     expect(page).to have_content(@post.title)
     expect(page).to have_content(@post.text)
   end

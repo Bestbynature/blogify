@@ -30,13 +30,13 @@ gem 'jquery-rails'
 gem 'will_paginate'
 
 group :development, :test do
+  gem 'capybara'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-mocks', '3.12.6'
   gem 'rspec-rails'
   gem 'selenium-webdriver', '~> 4.0'
-  gem 'capybara'
-  gem 'factory_bot_rails'
 end
 
 group :development do

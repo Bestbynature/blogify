@@ -14,12 +14,12 @@ Capybara.register_driver :selenium_chrome_headless do |app|
     app,
     browser: :chrome,
     # desired_capabilities: capabilities,
-    options: options,
+    options:
     # driver_path: '/usr/local/bin/chromedriver'
   )
 end
 
-RSpec.configure do |config|
+RSpec.configure do |_config|
   Capybara.default_driver = :selenium_chrome_headless
   Capybara.server_host = 'localhost'
   Capybara.server_port = '3000'

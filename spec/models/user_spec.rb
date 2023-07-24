@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'validations' do
     it 'is valid with valid attributes' do
-      user = User.new(name: 'John Doe', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico', posts_counter: 0)
+      user = User.new(name: 'John Doe', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico',
+                      posts_counter: 0)
       expect(user).to be_valid
     end
 
     it 'is not valid without a name' do
-      user = User.new(name: nil, photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico', posts_counter: 0)
+      user = User.new(name: nil, photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico',
+                      posts_counter: 0)
       expect(user).not_to be_valid
     end
 

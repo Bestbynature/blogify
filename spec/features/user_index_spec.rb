@@ -5,9 +5,12 @@ RSpec.describe 'User Index Page', type: :feature, js: true do
     Capybara.current_driver = :selenium_chrome_headless
 
     @users = []
-    @users << User.create(name: 'User1', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'User1 bio', posts_counter: 0)
-    @users << User.create(name: 'User2', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'User2 bio', posts_counter: 0)
-    @users << User.create(name: 'User3', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'User3 bio', posts_counter: 0)
+    @users << User.create(name: 'User1', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'User1 bio',
+                          posts_counter: 0)
+    @users << User.create(name: 'User2', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'User2 bio',
+                          posts_counter: 0)
+    @users << User.create(name: 'User3', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'User3 bio',
+                          posts_counter: 0)
   end
 
   it 'displays username, profile picture, and number of posts for each user' do
@@ -31,7 +34,7 @@ RSpec.describe 'User Index Page', type: :feature, js: true do
       end
 
       expect(page).to have_current_path(user_path(user))
-      visit users_path 
+      visit users_path
     end
   end
 end

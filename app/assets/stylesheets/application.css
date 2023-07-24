@@ -13,40 +13,40 @@
  *= require_tree .
  *= require_self
  */
- * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
- }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- .body {
-   font-family: 'Roboto', sans-serif;
-   background-color: #c5c5c5;
-   max-width: 700px;
- }
+.body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #c5c5c5;
+  max-width: 700px;
+}
 
- .user-photo {
-    width: 30%;
-    height: 100%;
-    border: 2px solid rgb(57, 55, 55);
- }
+.user-photo {
+  width: 30%;
+  height: 100%;
+  border: 2px solid rgb(57, 55, 55);
+}
 
- #user {
-   display: flex;
-   align-items: center;
-   padding: 1rem;
- }
+#user {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
 
- #user-name {
-   display: flex;
-   flex-direction: column;
-   border: 2px solid black;
-   flex: 1;
-   margin-left: 2rem;
-   justify-content: flex-start;
-   padding: 0.5rem 1rem;
- }
+#user-name {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  flex: 1;
+  margin-left: 2rem;
+  justify-content: flex-start;
+  padding: 0.5rem 1rem;
+}
 
- #user-name>p:nth-of-type(1) {
+#user-name > p:nth-of-type(1) {
   align-self: flex-end;
- }
+}

@@ -4,8 +4,8 @@ RSpec.describe 'CommentsController', type: :request do
   describe 'GET #index' do
     let(:user) { User.create(name: 'John Doe', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'Teacher from Mexico', posts_counter: 0) }
     let(:post) { Post.create(title: 'Post Title', text: 'This is the content of the post.', author: user) }
-    let!(:comment1) { Comment.create(text: 'First comment', post: post, user: user) }
-    let!(:comment2) { Comment.create(text: 'Second comment', post: post, user: user) }
+    let!(:comment1) { Comment.create(text: 'First comment', post:, user:) }
+    let!(:comment2) { Comment.create(text: 'Second comment', post:, user:) }
 
     it 'returns a successful response' do
       get user_post_comments_path(user, post)
@@ -28,7 +28,7 @@ RSpec.describe 'CommentsController', type: :request do
   describe 'GET #show' do
     let(:user) { User.create(name: 'John Doe', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'Teacher from Mexico', posts_counter: 0) }
     let(:post) { Post.create(title: 'Post Title', text: 'This is the content of the post.', author: user) }
-    let(:comment) { Comment.create(text: 'This is a comment.', post: post, user: user) }
+    let(:comment) { Comment.create(text: 'This is a comment.', post:, user:) }
 
     it 'returns a successful response' do
       get user_post_comment_path(user, post, comment)
