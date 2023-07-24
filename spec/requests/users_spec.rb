@@ -1,37 +1,39 @@
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request do
-  describe 'GET /index' do
-    it 'returns http success' do
-      get '/users/'
+RSpec.describe 'UsersController', type: :request do
+  describe 'GET #index' do
+    it 'returns a successful response' do
+      get users_path
       expect(response).to have_http_status(:success)
     end
 
-    it 'displays appropriate placeholder' do
-      get '/users/'
-      expect(response.body).to include('Here is a list of all the users stored in the database')
+    it 'renders the index template' do
+      get users_path
+      expect(response).to render_template(:index)
     end
 
-    it 'renders the appropriate template' do
-      get '/users/'
-      expect(response).to render_template(:index)
+    it 'displays placeholder text in the response body' do
+      get users_path
+      expect(response.body).to include('Users')
     end
   end
 
-  describe 'GET /show' do
-    it 'returns http success' do
-      get '/users/:user_id'
+  describe 'GET #show' do
+    let(:user) { User.create(name: 'John Doe', photo: 'https://source.unsplash.com/glRqyWJgUeY', bio: 'Teacher from Mexico', posts_counter: 0) }
+
+    it 'returns a successful response' do
+      get user_path(user)
       expect(response).to have_http_status(:success)
     end
 
-    it 'displays appropriate placeholder' do
-      get '/users/:users_id'
-      expect(response.body).to include('This is a particular user with the given id')
+    it 'renders the show template' do
+      get user_path(user)
+      expect(response).to render_template(:show)
     end
 
-    it 'renders the appropriate template' do
-      get '/users/:user_id'
-      expect(response).to render_template(:show)
+    it 'displays placeholder text in the response body' do
+      get user_path(user)
+      expect(response.body).to include('Name')
     end
   end
 end
