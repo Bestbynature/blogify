@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   def index
     @users = User.all
   end
@@ -44,7 +46,8 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    render file: "#{Rails.root}/public/404.html", status: :not_found unless @user
   end
 
   def user_params

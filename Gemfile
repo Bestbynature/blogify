@@ -27,11 +27,16 @@ gem 'bootsnap', require: false
 
 gem 'jquery-rails'
 
+gem 'will_paginate'
+
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rails-controller-testing'
   gem 'rspec-mocks', '3.12.6'
   gem 'rspec-rails'
+  gem 'selenium-webdriver', '~> 4.0'
+  gem 'capybara'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -39,9 +44,5 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'factory_bot_rails'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'webdrivers'
 end

@@ -1,39 +1,44 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>User Details</h1>
-<p><strong>Name:</strong> <%= @user.name %></p>
-<p><strong>Photo:</strong> <%= @user.photo %></p>
+<p>
+  <strong>Name:</strong> <%= @user.name %>
+</p>
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag(@user.photo, alt: @user.name, height: 100) if @user.photo.present? %>
+</p>
 
-<p><strong>Number of posts:</strong> <%= @user.posts.count %></p>
+<p>
+  <strong>Number of posts:</strong> <%= @user.posts.count %>
+</p>
 
 <h1>Posts</h1>
+<%= link_to "New post", new_user_post_path(@user) %>
 
-
-<div id="posts">
-  <% @posts.each_with_index do |post, index| %>
+<% @posts.each_with_index do |post, index| %>
+  <div id="post-<%= post.id %>">
     <h3>Post # <%= index + 1 %></h3>
     <%= render post %>
     <p>
-    <strong>Number of comments: </strong>
-    <%= post.comments.count %>
-    <p>
-    <p><strong>Likes: </strong> <%= post.likes_counter %></p>
-    <p>
-      <%= link_to "Show this post", user_post_path(@user, post) %>
+      <strong>Number of comments: </strong>
+      <%= post.comments.count %>
     </p>
-
+    <p>
+      <strong>Likes: </strong> <%= post.likes_counter %>
+    </p>
+    <p>
+      <%= link_to "Show this post", user_post_path(@user, post), data: { post_id: post.id } %>
+    </p>
+    <div>
+      <%= render post.comments %>
     </div>
-
-    <div id="comments">
-    <h3>comments</h3>
-    <% post.comments.each do |comment| %>
-      <p>
-        <strong><%= @user.name%>: <%=comment.text%></strong>
-      </p>
-    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New post", new_user_post_path(@user) %>
 
 
+
+<%= link_to "Back to all users", users_path %>
+
+<%= will_paginate @posts %>

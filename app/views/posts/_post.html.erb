@@ -1,8 +1,13 @@
 <div >
+
+<p>
+    <strong>Title:</strong>
+    <%= post.title %>
+  </p>
   
   <p>
     <strong>Text:</strong>
-    <%= post.text %>
+    <%= truncate(post.text, length: 50) %>
   </p>
 
 </div>
