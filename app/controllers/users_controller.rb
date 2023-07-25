@@ -46,12 +46,4 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find_by(id: params[:id])
-    render file: "#{Rails.root}/public/404.html", status: :not_found unless @user
-  end
-
-  def user_params
-    params.require(:user).permit(:name, :photo, :bio)
-  end
-end
+  
