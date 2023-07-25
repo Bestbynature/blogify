@@ -9,6 +9,9 @@
   background-color: #c5c5c5;
   max-width: 700px;
   padding: 1rem;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+
 }
 
 .user-photo {
