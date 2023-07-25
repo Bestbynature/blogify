@@ -26,6 +26,10 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
+  # Enable email confirmation for new registrations.
+# The user will receive an email with a confirmation link upon sign-up.
+config.confirm_within = 3.days # Change this to the desired time frame
+
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

@@ -14,19 +14,28 @@
     <div data-comment-id="<%= comment.id %>">
       <p>
         <strong><%= comment.user.name %>:</strong><%= comment.text %>
-        <%= link_to "Edit", edit_user_post_comment_path(@post.author, @post, comment) %>
+        
+        <% if can? :update, comment %>
+          <%= link_to "Edit", edit_user_post_comment_path(@post.author, @post, comment) %>
+        <% end %>
+        <% if can? :destroy, comment %>
         <%= link_to "Delete", user_post_comment_path(@post.author, @post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
-      </p>
+        <% end %>
+        </p>
     </div>
   <% end %>
 </div>
 
 <div>
+<% if can? :update, @post %>
   <%= link_to "Edit this post", edit_user_post_path(@post.author, @post) %> |
+<% end %>
   <%= link_to "Back to posts", user_posts_path(@post.author) %>
 
-  <%= button_to "Destroy this post", user_post_path(@post.author, @post), method: :delete, data: { confirm: "Are you sure?" } %>
-</div>
+  <% if can? :destroy, @post %>
+  <%= button_to "Delete this post", user_post_path(@post.author, @post), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+  </div>
 
 <%= link_to "New comment", new_user_post_comment_path(@post.author, @post) %>
 

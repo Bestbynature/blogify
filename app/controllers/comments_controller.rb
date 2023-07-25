@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_post
   before_action :set_comment
   before_action :set_user
+  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])

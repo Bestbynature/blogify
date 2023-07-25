@@ -2,7 +2,7 @@
 
 <% link_to "Add a New user", new_user_path %>
 <h1>Users</h1>
-
+<p> The current user is <%= current_user.name %></p>
 <div id="users">
 <% @users.each do |user| %>
   <div class="user" id="user-<%= user.id %>">

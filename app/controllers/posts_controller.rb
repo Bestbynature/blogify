@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   before_action :set_user
+  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
@@ -10,7 +11,6 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.author
-    # @comment = Comment.new
   end
 
   def new
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @post.destroy
 
     respond_to do |format|
@@ -74,6 +74,5 @@ class PostsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
-    # @user = @post.author
   end
 end

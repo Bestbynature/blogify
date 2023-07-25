@@ -29,17 +29,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    # @user = User.find_by(id: params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    @user = current_user
     @user.update(params.require(:user).permit(:username, :email, :password))
     redirect_to users_path
   end
 
   def destroy
-    @user = User.find_by(id: params[:id])
+    @user = current_user
     @user.destroy
     redirect_to users_path
   end
