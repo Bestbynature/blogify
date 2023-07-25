@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   # delete all users
-def self.delete_all
+  def self.delete_all
     User.all.map(&:destroy)
   end
 
