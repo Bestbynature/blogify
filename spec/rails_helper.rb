@@ -54,3 +54,6 @@ end
 #   Capybara.server_port = '3000'
 #   # ... (your other configurations)
 # end
+
+require 'rswag/specs'
+require 'rswag/ui'

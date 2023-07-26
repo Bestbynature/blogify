@@ -33,6 +33,8 @@ gem 'devise'
 
 gem 'cancancan'
 
+gem 'rswag'
+
 group :development, :test do
   gem 'capybara'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
