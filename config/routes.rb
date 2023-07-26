@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'users#index'
-  
-  resources :posts
-  resources :comments
-  
-  resources :users do
+  resources :users, only: [:index, :show] do
     resources :posts do
-      post 'like', on: :member
+      resources :likes, only: [:create, :destroy] # Nested under posts only
       resources :comments 
     end
   end
-  
 end

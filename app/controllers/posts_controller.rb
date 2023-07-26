@@ -4,13 +4,13 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user
     @posts = @user.posts.includes(:comments).paginate(page: params[:page], per_page: 3)
   end
 
   def show
     @post = Post.find(params[:id])
-    @user = @post.author
+    @user = current_user
   end
 
   def new
@@ -48,20 +48,16 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    # @post = Post.find(params[:id])
-    @post.destroy
-
-    respond_to do |format|
-      format.html { redirect_to user_posts_path(@post.author), notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  def like
+    @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
-    @post.increment!(:likes_counter)
-  end
+    
+    @post.comments.each(&:destroy)
+    @post.likes.each(&:destroy)
 
+    @post.destroy
+    redirect_to user_posts_path(@user.id)
+  end
+  
   private
 
   def set_post

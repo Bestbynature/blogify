@@ -1,0 +1,18 @@
+# document.querySelector(".like-button").innerText = "Like";
+# document.querySelector(".like-button").href = "<%= post_likes_path(@post) %>";
+# document.querySelector(".likes-count").innerText = "<%= @post.likes_counter %>";
+
+# // app/views/likes/destroy.js.erb
+
+# // Assuming you have an element with the class "like-button" representing the like/unlike button
+const likeButton = document.querySelector('.like-button');
+
+# // If the "like-button" element exists, update its text and data attributes
+if (likeButton) {
+#   // Change the button text to "Like"
+  likeButton.textContent = 'Like';
+#   // Change the data-method attribute to "post" to indicate that it now represents a "Like" action
+  likeButton.dataset.method = 'post';
+#   // Update the URL to point to the "likes" create action, as it's now a "Like" action
+  likeButton.formAction = '<%= user_post_likes_path(@post.author, @post) %>';
+}

@@ -4,7 +4,7 @@
 
 <p class="sub"><strong>Comments: </strong><%= @post.comments.count %>,
 
-<strong>Likes: </strong><%= @post.likes_counter %></p>
+<strong>Likes: </strong><%= @post.likes.count %></p>
 
 <p class="border"><%= @post.text %></p>
 
@@ -13,7 +13,7 @@
   <% @post.comments.each do |comment| %>
     <div data-comment-id="<%= comment.id %>">
       <p>
-        <strong><%= comment.user.name %>:</strong><%= comment.text %>
+        <strong><%= comment.user.name %>: </strong><%= comment.text %>
         
         <% if can? :update, comment %>
           <%= link_to "Edit", edit_user_post_comment_path(@post.author, @post, comment) %>
@@ -39,4 +39,6 @@
 
 <%= link_to "New comment", new_user_post_comment_path(@post.author, @post) %>
 
-<%= button_to "Like", like_user_post_path(@post.author, @post), method: :post, remote: true %>
+
+  <%= button_to "Like", user_post_likes_path(@post.author, @post), method: :post, remote: true, class: "like-button" %>
+

@@ -1,0 +1,7 @@
+
+# document.querySelector(".like-button").innerText = "Unlike";
+# document.querySelector(".like-button").href = "<%= post_like_path(@post, @post.find_like_by_user(current_user)) %>";
+# document.querySelector(".likes-count").innerText = "<%= @post.likes_counter %>";
+
+# // This will replace the content of the like button with "Unlike" after liking the post
+$('.like-button').replaceWith("<%= j(button_to 'Unlike', user_post_like_path(@post.author, @like), method: :delete, class: 'like-button') %>");

@@ -26,7 +26,7 @@
 
     <p class="sub">
       <strong>Comments: </strong><%= post.comments.count %>,
-      <strong>Likes: </strong><%= post.likes_counter %>
+      <strong>Likes: </strong><%= post.likes.count %>
     </p>
     <p>
       <%= link_to "Show this post", user_post_path(@user, post), data: { post_id: post.id } %>

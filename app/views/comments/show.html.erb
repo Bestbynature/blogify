@@ -3,7 +3,7 @@
 <%= render @comment %>
 
 <div>
-  <%= link_to "Edit this comment", edit_comment_path(@comment) %> |
+  <%= link_to "Edit this comment", edit_user_post_comment_path(@comment) %> |
   <%= link_to "Back to comments", user_post_comments_path(@comment.post.author, @comment.post) %>
 
   <%= button_to "Destroy this comment", user_post_comment_path(@comment.post.author, @comment.post, @comment), method: :delete, data: { confirm: "Are you sure?" } %>
